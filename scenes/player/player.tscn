@@ -1,0 +1,208 @@
+[gd_scene load_steps=17 format=3 uid="uid://dgjsw23n3gchh"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_4u47g"]
+[ext_resource type="Texture2D" uid="uid://kc2o6ybwip4q" path="res://scenes/player/player.png" id="2_8x1k5"]
+[ext_resource type="Texture2D" uid="uid://dx6w72k81kj7h" path="res://scenes/player/ski.png" id="2_p5np5"]
+[ext_resource type="PackedScene" uid="uid://bbh1bk2sccwl2" path="res://scenes/components/velocity_component/velocity_component.tscn" id="4_dnkbb"]
+[ext_resource type="PackedScene" uid="uid://cfjhbwxq1omhl" path="res://scenes/components/trail/trail.tscn" id="4_v8gx4"]
+[ext_resource type="Texture2D" uid="uid://dervsvwyi8eiw" path="res://scenes/player/snow_particle.png" id="6_0l8ix"]
+[ext_resource type="Texture2D" uid="uid://ccytmtwpa5soi" path="res://scenes/player/shadow.png" id="7_fhonx"]
+[ext_resource type="Texture2D" uid="uid://bog7la5wjettx" path="res://scenes/player/stick.png" id="8_k3x8c"]
+
+[sub_resource type="Curve" id="Curve_rmpv0"]
+_data = [Vector2(0, 0), 0.0, 3.06316, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_w1ny8"]
+_data = [Vector2(0, 0.0105263), -6.73895, 3.82895, 0, 0, Vector2(1, 1), 0.510527, 0.510527, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_3otch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/skis/Ski1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/skis/Ski2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_peej0"]
+resource_name = "break"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/skis/Ski1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 0.261799]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/skis/Ski2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2aqoo"]
+_data = {
+"RESET": SubResource("Animation_3otch"),
+"break": SubResource("Animation_peej0")
+}
+
+[sub_resource type="Curve" id="Curve_kc4oq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3wp46"]
+curve = SubResource("Curve_kc4oq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cjg7f"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_3wp46")
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4u47g")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-5.96046e-08, -5.96046e-08)
+rotation = 1.5708
+scale = Vector2(0.483545, 1.54167)
+texture = ExtResource("7_fhonx")
+
+[node name="Sprites" type="CanvasGroup" parent="."]
+
+[node name="skis" type="Node2D" parent="Sprites"]
+position = Vector2(0, 4)
+
+[node name="Ski1" type="Sprite2D" parent="Sprites/skis"]
+position = Vector2(-3, -4)
+texture = ExtResource("2_p5np5")
+
+[node name="Ski2" type="Sprite2D" parent="Sprites/skis"]
+position = Vector2(3, -4)
+texture = ExtResource("2_p5np5")
+
+[node name="TrailPoint1" type="Node2D" parent="Sprites/skis"]
+z_index = -1
+position = Vector2(-3, 0)
+
+[node name="TrailPoint2" type="Node2D" parent="Sprites/skis"]
+z_index = -1
+position = Vector2(3, 0)
+
+[node name="Sprite" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, 3)
+texture = ExtResource("2_8x1k5")
+offset = Vector2(0, -7)
+
+[node name="scarf_pivot" type="Node2D" parent="Sprites/Sprite"]
+position = Vector2(1, -8)
+
+[node name="hair_pivot" type="Node2D" parent="Sprites/Sprite"]
+position = Vector2(0, -12)
+
+[node name="Stick" type="Sprite2D" parent="Sprites/Sprite"]
+position = Vector2(-7, -4)
+rotation = -1.12574
+texture = ExtResource("8_k3x8c")
+offset = Vector2(-5, 0)
+
+[node name="Stick2" type="Sprite2D" parent="Sprites/Sprite"]
+position = Vector2(7, -4)
+rotation = 4.26733
+texture = ExtResource("8_k3x8c")
+offset = Vector2(-5, 0)
+
+[node name="Trail" parent="Sprites" node_paths=PackedStringArray("pivot") instance=ExtResource("4_v8gx4")]
+z_index = -1
+width = 3.0
+default_color = Color(0.545098, 0.607843, 0.705882, 1)
+pivot = NodePath("../skis/TrailPoint1")
+length = -1
+border = 256.0
+randomness = 0.9
+
+[node name="Trail2" parent="Sprites" node_paths=PackedStringArray("pivot") instance=ExtResource("4_v8gx4")]
+z_index = -1
+width = 3.0
+default_color = Color(0.545098, 0.607843, 0.705882, 1)
+pivot = NodePath("../skis/TrailPoint2")
+length = -1
+border = 256.0
+randomness = 0.9
+
+[node name="Scarf" parent="Sprites" node_paths=PackedStringArray("pivot") instance=ExtResource("4_v8gx4")]
+width = 3.0
+width_curve = SubResource("Curve_rmpv0")
+default_color = Color(0, 0.584314, 0.913725, 1)
+pivot = NodePath("../Sprite/scarf_pivot")
+length = 8
+border = 24.0
+randomness = 2.0
+
+[node name="Hair" parent="Sprites" node_paths=PackedStringArray("pivot") instance=ExtResource("4_v8gx4")]
+width = 8.0
+width_curve = SubResource("Curve_w1ny8")
+default_color = Color(0.454902, 0.247059, 0.223529, 1)
+pivot = NodePath("../Sprite/hair_pivot")
+border = 12.0
+randomness = 1.0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_dnkbb")]
+
+[node name="BreakAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2aqoo")
+}
+
+[node name="BreakParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-3, 4)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_cjg7f")
+texture = ExtResource("6_0l8ix")
+
+[node name="BreakParticles2" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(3, 4)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_cjg7f")
+texture = ExtResource("6_0l8ix")

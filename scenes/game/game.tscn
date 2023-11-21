@@ -1,0 +1,282 @@
+[gd_scene load_steps=11 format=3 uid="uid://bh5kustglvv1c"]
+
+[ext_resource type="PackedScene" uid="uid://dgjsw23n3gchh" path="res://scenes/player/player.tscn" id="1_7b0xc"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_45wlt"]
+[ext_resource type="Shader" path="res://scenes/game/post_processing/gradient.gdshader" id="3_7444n"]
+[ext_resource type="PackedScene" uid="uid://dusneuq032v31" path="res://scenes/game/tree.tscn" id="3_p82gw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2e1n"]
+shader = ExtResource("3_7444n")
+
+[sub_resource type="Gradient" id="Gradient_5qouq"]
+interpolation_mode = 2
+colors = PackedColorArray(0.545098, 0.607843, 0.705882, 1, 0.752941, 0.796078, 0.862745, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xj4sj"]
+gradient = SubResource("Gradient_5qouq")
+
+[sub_resource type="Animation" id="Animation_63cui"]
+resource_name = "day"
+length = 10.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 6, 8, 10),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
+"update": 0,
+"values": [Color(1, 0.494118, 0.109804, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.494118, 0.109804, 1), Color(0.152941, 0.196078, 0.368627, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jw6hb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.4, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7vh1"]
+_data = {
+"RESET": SubResource("Animation_jw6hb"),
+"day": SubResource("Animation_63cui")
+}
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_45wlt")
+
+[node name="Player" parent="." instance=ExtResource("1_7b0xc")]
+position = Vector2(160, 135)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 90)
+
+[node name="Gradient" type="TextureRect" parent="Camera2D"]
+z_index = -2
+material = SubResource("ShaderMaterial_a2e1n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_xj4sj")
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(-1, 181)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 160)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(0, 138)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 108)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(-3, 76)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(23, 54)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(3, 26)
+
+[node name="Tree8" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 208)
+
+[node name="Tree9" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 8)
+
+[node name="Tree10" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(6, -31)
+
+[node name="Tree11" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(21, -57)
+
+[node name="Tree12" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(8, -90)
+
+[node name="Tree13" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(37, -118)
+
+[node name="Tree14" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(9, -157)
+
+[node name="Tree15" parent="Trees" instance=ExtResource("3_p82gw")]
+position = Vector2(30, -164)
+
+[node name="Trees2" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(294, -8)
+
+[node name="Tree" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(-1, 181)
+
+[node name="Tree2" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 160)
+
+[node name="Tree3" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(0, 138)
+
+[node name="Tree4" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 108)
+
+[node name="Tree5" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(-3, 76)
+
+[node name="Tree6" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(23, 54)
+
+[node name="Tree7" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(3, 26)
+
+[node name="Tree8" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 208)
+
+[node name="Tree9" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 8)
+
+[node name="Tree10" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(6, -31)
+
+[node name="Tree11" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(21, -57)
+
+[node name="Tree12" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(8, -90)
+
+[node name="Tree13" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(37, -118)
+
+[node name="Tree14" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(9, -157)
+
+[node name="Tree15" parent="Trees2" instance=ExtResource("3_p82gw")]
+position = Vector2(30, -164)
+
+[node name="Trees3" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1, -384)
+
+[node name="Tree" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(-1, 181)
+
+[node name="Tree2" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 160)
+
+[node name="Tree3" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(0, 138)
+
+[node name="Tree4" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 108)
+
+[node name="Tree5" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(-3, 76)
+
+[node name="Tree6" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(23, 54)
+
+[node name="Tree7" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(3, 26)
+
+[node name="Tree8" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 208)
+
+[node name="Tree9" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 8)
+
+[node name="Tree10" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(6, -31)
+
+[node name="Tree11" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(21, -57)
+
+[node name="Tree12" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(8, -90)
+
+[node name="Tree13" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(37, -118)
+
+[node name="Tree14" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(9, -157)
+
+[node name="Tree15" parent="Trees3" instance=ExtResource("3_p82gw")]
+position = Vector2(30, -164)
+
+[node name="Trees4" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(294, -389)
+
+[node name="Tree" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(-1, 181)
+
+[node name="Tree2" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 160)
+
+[node name="Tree3" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(0, 138)
+
+[node name="Tree4" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 108)
+
+[node name="Tree5" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(-3, 76)
+
+[node name="Tree6" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(23, 54)
+
+[node name="Tree7" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(3, 26)
+
+[node name="Tree8" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(20, 208)
+
+[node name="Tree9" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(25, 8)
+
+[node name="Tree10" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(6, -31)
+
+[node name="Tree11" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(21, -57)
+
+[node name="Tree12" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(8, -90)
+
+[node name="Tree13" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(37, -118)
+
+[node name="Tree14" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(9, -157)
+
+[node name="Tree15" parent="Trees4" instance=ExtResource("3_p82gw")]
+position = Vector2(30, -164)
+
+[node name="Tint" type="CanvasModulate" parent="."]
+color = Color(1, 0.4, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tint"]
+autoplay = "day"
+speed_scale = 0.1
+libraries = {
+"": SubResource("AnimationLibrary_y7vh1")
+}

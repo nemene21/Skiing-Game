@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgjsw23n3gchh"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_4u47g"]
+[ext_resource type="Texture2D" uid="uid://kc2o6ybwip4q" path="res://scenes/player/player.png" id="2_8x1k5"]
+[ext_resource type="Texture2D" uid="uid://dx6w72k81kj7h" path="res://scenes/player/ski.png" id="2_p5np5"]
+[ext_resource type="PackedScene" uid="uid://bbh1bk2sccwl2" path="res://scenes/components/velocity_component/velocity_component.tscn" id="4_dnkbb"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4u47g")
+
+[node name="Sprites" type="CanvasGroup" parent="."]
+
+[node name="skis" type="Node2D" parent="Sprites"]
+position = Vector2(0, 4)
+
+[node name="Ski1" type="Sprite2D" parent="Sprites/skis"]
+position = Vector2(-3, -5)
+texture = ExtResource("2_p5np5")
+
+[node name="Ski2" type="Sprite2D" parent="Sprites/skis"]
+position = Vector2(3, -5)
+texture = ExtResource("2_p5np5")
+
+[node name="Player" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, -3)
+texture = ExtResource("2_8x1k5")
+
+[node name="Trail" type="Node2D" parent="Sprites"]
+
+[node name="Trail" type="Line2D" parent="Sprites/Trail"]
+position = Vector2(-3, 0)
+width = 8.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_dnkbb")]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1jo6lrsh2re4"]
+
+[ext_resource type="Shader" path="res://scenes/vfx/shockwave/shock.gdshader" id="1_xnh6e"]
+[ext_resource type="Script" path="res://scenes/vfx/shockwave/shockwave.gd" id="2_pmffq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sn5cf"]
+shader = ExtResource("1_xnh6e")
+shader_parameter/anim = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_8v7fv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/anim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xgqqg"]
+resource_name = "shock"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/anim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4scmt"]
+_data = {
+"RESET": SubResource("Animation_8v7fv"),
+"shock": SubResource("Animation_xgqqg")
+}
+
+[node name="Shockwave" type="Node2D"]
+
+[node name="Shockwave" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_sn5cf")
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 20)
+script = ExtResource("2_pmffq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
+autoplay = "shock"
+speed_scale = 0.7
+libraries = {
+"": SubResource("AnimationLibrary_4scmt")
+}
+
+[connection signal="animation_finished" from="Shockwave/AnimationPlayer" to="Shockwave" method="_on_animation_player_animation_finished"]

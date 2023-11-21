@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://yjiu13hnt5bl"]
+
+[ext_resource type="Shader" path="res://scenes/game/post_processing/post_processing.gdshader" id="1_gvbki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dm6yp"]
+shader = ExtResource("1_gvbki")
+
+[node name="PostProcessing" type="CanvasLayer"]
+
+[node name="PostProcessingRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dm6yp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
