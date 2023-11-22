@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bek5qh7tkppba"]
+[gd_scene load_steps=4 format=3 uid="uid://bek5qh7tkppba"]
 
 [ext_resource type="Script" path="res://scenes/game/vfx_manager/vfx_manager.gd" id="1_36bgw"]
 [ext_resource type="PackedScene" uid="uid://d1jo6lrsh2re4" path="res://scenes/vfx/shockwave/shockwave.tscn" id="2_rywo5"]
+[ext_resource type="PackedScene" uid="uid://cdunqr3kkm2cn" path="res://scenes/vfx/puddle/puddle.tscn" id="3_xgs2h"]
 
 [node name="VfxManager" type="Node"]
 script = ExtResource("1_36bgw")
-vfx_to_add = Array[Resource]([ExtResource("2_rywo5")])
+vfx_to_add = Array[Resource]([ExtResource("2_rywo5"), ExtResource("3_xgs2h")])

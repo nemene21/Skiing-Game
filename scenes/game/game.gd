@@ -12,6 +12,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Utils.player == null:
+		return
+	
 	camera.global_position.y = Utils.dlerp(
 		camera.global_position.y,
 		player.global_position.y - 160 - abs(player.velocitycomp.vel.length()) * 0.33,

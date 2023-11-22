@@ -9,6 +9,7 @@ var jump_height := 200.0
 var direction := -.5*PI
 
 var breaking := false
+var dead := false
 
 var height := .0
 var grounded := true
@@ -17,7 +18,7 @@ var grounded := true
 @onready var skis := $Sprites/skis
 @onready var sprite := $Sprites/Sprite
 @onready var sprites := $Sprites
-@onready var break_animation := $BreakAnimator
+@onready var animator := $Animator
 @onready var break_particles1 := $BreakParticles
 @onready var break_particles2 := $BreakParticles2
 @onready var scarf := $Sprites/Scarf
@@ -30,8 +31,13 @@ var grounded := true
 
 func _ready() -> void:
 	velocitycomp.vel.y = -1
+	Utils.player = self
 
 func _process(delta: float) -> void:
+	if dead:
+		velocitycomp.lerp_velocity(Vector2.ZERO, 8.0)
+		return
+	
 	var steering_input := float(Input.is_action_pressed("right")) - float(Input.is_action_pressed("left"))
 	var is_breaking := Input.is_action_pressed("right") and Input.is_action_pressed("left")
 	var speeding := Input.is_action_pressed("up")
@@ -60,7 +66,7 @@ func _process(delta: float) -> void:
 	
 	if breaking != is_breaking:
 		breaking = is_breaking
-		break_animation.call(["play", "play_backwards"][int(!breaking)], "break")
+		animator.call(["play", "play_backwards"][int(!breaking)], "break")
 	
 	skis.skew = (direction + PI*.5) * .5
 	skis.rotation = PI*.25 + direction * .5
@@ -128,3 +134,24 @@ func land():
 	
 	trail1.turn_on()
 	trail2.turn_on()
+
+func try_dying() -> bool:
+	if velocitycomp.vel.length() > max_speed * .5:
+		die()
+		return true
+	return false
+
+func die():
+	jump()
+	animator.play("die")
+	VfxManager.play_vfx("puddle", global_position, 0, Vector2(.5, .5), -1)
+	dead = true
+	velocitycomp.vel *= 1.5
+
+func _on_animator_animation_finished(anim_name: StringName) -> void:
+	if anim_name != "die":
+		return
+	
+	VfxManager.play_vfx("puddle", global_position, 0, Vector2(.65, .65), -1)
+	await(get_tree().create_timer(0.2).timeout)
+	VfxManager.play_vfx("puddle", global_position, 0, Vector2(1, 1), -1)
