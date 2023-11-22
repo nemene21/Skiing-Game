@@ -40,6 +40,7 @@ func turn_off(kill_time: float = 80.0) -> void:
 	line.default_color = default_color
 	line.width = width
 	line.width_curve = width_curve
+	line.z_index = z_index
 	
 	var timer = Timer.new()
 	timer.wait_time = kill_time

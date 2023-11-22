@@ -17,8 +17,8 @@ func _process(delta: float) -> void:
 	
 	camera.global_position.y = Utils.dlerp(
 		camera.global_position.y,
-		player.global_position.y - 160 - abs(player.velocitycomp.vel.length()) * 0.33,
-		3
+		player.global_position.y - 150,
+		Utils.player.velocitycomp.vel.length() * 0.04
 	)
 	
 	if player.global_position.y < player_dist:

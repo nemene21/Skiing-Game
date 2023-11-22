@@ -233,7 +233,7 @@ texture = ExtResource("8_k3x8c")
 offset = Vector2(-5, 0)
 
 [node name="Trail" parent="Sprites" node_paths=PackedStringArray("pivot") instance=ExtResource("4_v8gx4")]
-z_index = -1
+z_index = -2
 width = 3.0
 default_color = Color(0.545098, 0.607843, 0.705882, 1)
 pivot = NodePath("../skis/TrailPoint1")
@@ -242,7 +242,7 @@ border = 256.0
 randomness = 0.9
 
 [node name="Trail2" parent="Sprites" node_paths=PackedStringArray("pivot") instance=ExtResource("4_v8gx4")]
-z_index = -1
+z_index = -2
 width = 3.0
 default_color = Color(0.545098, 0.607843, 0.705882, 1)
 pivot = NodePath("../skis/TrailPoint2")
@@ -275,14 +275,14 @@ libraries = {
 }
 
 [node name="BreakParticles" type="GPUParticles2D" parent="."]
-z_index = -1
+z_index = -2
 position = Vector2(-3, 4)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_cjg7f")
 texture = ExtResource("6_0l8ix")
 
 [node name="BreakParticles2" type="GPUParticles2D" parent="."]
-z_index = -1
+z_index = -2
 position = Vector2(3, 4)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_cjg7f")

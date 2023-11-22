@@ -115,8 +115,8 @@ func _process(delta: float) -> void:
 	)
 	stick2.scale.x = Utils.dlerp(stick2.scale.x, lerp(1.0, 0.65, float(speeding)), 10.0)
 
-func jump():
-	horizontal_vel = jump_height
+func jump(strength: float = 1.0):
+	horizontal_vel = jump_height * strength
 	sprite.scale = Vector2(0.66, 1.33)
 	create_tween().tween_property(sprite, "scale", Vector2(1, 1), 0.25)
 	
@@ -142,7 +142,7 @@ func try_dying() -> bool:
 	return false
 
 func die():
-	jump()
+	jump(2.0)
 	animator.play("die")
 	VfxManager.play_vfx("puddle", global_position, 0, Vector2(.5, .5), -1)
 	dead = true
