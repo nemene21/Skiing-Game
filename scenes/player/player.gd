@@ -38,8 +38,8 @@ func _process(delta: float) -> void:
 		velocitycomp.lerp_velocity(Vector2.ZERO, 8.0)
 		return
 	
-	var steering_input := float(Input.is_action_pressed("right")) - float(Input.is_action_pressed("left"))
-	var is_breaking := Input.is_action_pressed("right") and Input.is_action_pressed("left")
+	var steering_input := Input.get_axis("left", "right")
+	var is_breaking := (Input.is_action_pressed("right") and Input.is_action_pressed("left")) or Input.is_action_pressed("break")
 	var speeding := Input.is_action_pressed("up")
 	
 	steering = Utils.dlerp(steering, steering_input, 8.0)
@@ -78,8 +78,8 @@ func _process(delta: float) -> void:
 	ski_nodes[1].position.y =  min(steering, 0) * 3 - 4
 
 	var fast_enough = velocitycomp.vel.length() > 50
-	break_particles1.emitting = Input.is_action_pressed("left")  and fast_enough
-	break_particles2.emitting = Input.is_action_pressed("right") and fast_enough
+	break_particles1.emitting = (Input.is_action_pressed("left") or breaking)  and fast_enough
+	break_particles2.emitting = (Input.is_action_pressed("right") or breaking) and fast_enough
 	
 	direction = Utils.dlerp(direction, clamp(direction, -PI*.75, -PI*.25), 12.0)
 	
