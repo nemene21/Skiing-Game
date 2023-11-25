@@ -27,6 +27,7 @@ var grounded := true
 @onready var trail2 := $Sprites/Trail2
 @onready var stick1 := $Sprites/Sprite/Stick
 @onready var stick2 := $Sprites/Sprite/Stick2
+@onready var speed_particles := $SpeedParticles
 
 
 func _ready() -> void:
@@ -92,7 +93,6 @@ func _process(delta: float) -> void:
 	velocitycomp.cap_velocity(max_speed)
 
 	scarf.randomness = velocitycomp.vel.length()/max_speed * 2
-# useless comment
 	
 	sprite.scale = Utils.dlerp(
 		sprite.scale,
@@ -115,6 +115,11 @@ func _process(delta: float) -> void:
 		12.0
 	)
 	stick2.scale.x = Utils.dlerp(stick2.scale.x, lerp(1.0, 0.65, float(speeding)), 10.0)
+	
+	var normalized_vel: Vector2 = -velocitycomp.vel.normalized()
+	speed_particles.emitting = velocitycomp.vel.length() > max_speed * .5
+	speed_particles.process_material.direction = Vector3(normalized_vel.x, normalized_vel.y, .0)
+	speed_particles.amount_ratio = velocitycomp.vel.length() / max_speed
 
 func jump(strength: float = 1.0):
 	horizontal_vel = jump_height * strength
@@ -148,6 +153,7 @@ func die():
 	VfxManager.play_vfx("puddle", global_position, 0, Vector2(.5, .5), -1)
 	dead = true
 	velocitycomp.vel *= 1.5
+	speed_particles.emitting = false
 
 func _on_animator_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "die":

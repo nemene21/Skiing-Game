@@ -2,6 +2,7 @@ extends Node
 
 var time := .0
 var player
+var res := Vector2(320, 180)
 
 func _process(delta: float) -> void:
 	time += delta

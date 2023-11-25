@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var camera := $Camera2D
 @onready var player := $Player
+@onready var snow_gradient := $Camera2D/SnowGradient
 
 var player_dist := .0
 
@@ -14,6 +15,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Utils.player == null:
 		return
+	
+	snow_gradient.material.set_shader_parameter("offset", camera.global_position / Utils.res)
 	
 	camera.global_position.y = Utils.dlerp(
 		camera.global_position.y,
@@ -28,8 +31,3 @@ func _process(delta: float) -> void:
 		log.global_position.y = player.global_position.y - 500
 		log.rotation = (randf() * 2 - 1) * 0.1
 		add_child(log)
-	
-	for child in get_children():
-		if str(child.name).begins_with("Tree"):
-			if child.global_position.y - camera.global_position.y > 450:
-				child.global_position.y -= 900

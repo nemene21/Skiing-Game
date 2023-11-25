@@ -61,7 +61,7 @@ color = Color(0.635294, 0.14902, 0.2, 1)
 script = ExtResource("1_kggxf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Puddle"]
-autoplay = "grow"
 libraries = {
 "": SubResource("AnimationLibrary_rt8im")
 }
+autoplay = "grow"
