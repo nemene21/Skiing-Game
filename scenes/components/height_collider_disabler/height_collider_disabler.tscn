@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://tbvv8m7abqc7"]
+
+[ext_resource type="Script" path="res://scenes/components/height_collider_disabler/height_collider_disabler.gd" id="1_hp2av"]
+
+[node name="HeightColliderDisabler" type="Node"]
+script = ExtResource("1_hp2av")

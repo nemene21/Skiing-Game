@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm80djy40eoms"]
+[gd_scene load_steps=7 format=3 uid="uid://bm80djy40eoms"]
 
+[ext_resource type="PackedScene" uid="uid://tbvv8m7abqc7" path="res://scenes/components/height_collider_disabler/height_collider_disabler.tscn" id="1_ink3l"]
 [ext_resource type="PackedScene" uid="uid://yfxyksq8lfwa" path="res://scenes/components/hitbox/hitbox.tscn" id="1_ju7es"]
 [ext_resource type="Texture2D" uid="uid://byn6c3hvlj7qr" path="res://scenes/game/obstacles/log/log.png" id="1_whlw8"]
 [ext_resource type="Texture2D" uid="uid://ch4mvg72ygrxw" path="res://scenes/game/obstacles/log/shadow.png" id="2_lx2hd"]
@@ -7,8 +8,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfn2k"]
 size = Vector2(64, 12)
 
-[node name="Log" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o32wk"]
+size = Vector2(64, 8)
+
+[node name="Log" type="StaticBody2D"]
 z_index = -1
+
+[node name="HeightColliderDisabler" parent="." node_paths=PackedStringArray("colliders") instance=ExtResource("1_ink3l")]
+height = 5.0
+colliders = [NodePath("../CollisionShape2D")]
 
 [node name="Hitbox" parent="." instance=ExtResource("1_ju7es")]
 height = 10.0
@@ -23,3 +31,7 @@ texture = ExtResource("1_whlw8")
 z_index = -1
 position = Vector2(0, 6)
 texture = ExtResource("2_lx2hd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_o32wk")
