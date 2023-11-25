@@ -92,6 +92,7 @@ func _process(delta: float) -> void:
 	velocitycomp.cap_velocity(max_speed)
 
 	scarf.randomness = velocitycomp.vel.length()/max_speed * 2
+# useless comment
 	
 	sprite.scale = Utils.dlerp(
 		sprite.scale,
