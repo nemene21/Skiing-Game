@@ -28,6 +28,7 @@ var grounded := true
 @onready var stick1 := $Sprites/Sprite/Stick
 @onready var stick2 := $Sprites/Sprite/Stick2
 @onready var speed_particles := $SpeedParticles
+@onready var collider := $CollisionShape2D
 
 
 func _ready() -> void:
@@ -51,7 +52,7 @@ func _process(delta: float) -> void:
 		if grounded:
 			land()
 	
-	if is_breaking and grounded:
+	if (is_breaking and grounded) or is_on_ceiling():
 		velocitycomp.lerp_velocity(Vector2.ZERO, 2.0)
 	else:
 		var speedup = 1 + int(speeding) * 2
@@ -119,7 +120,7 @@ func _process(delta: float) -> void:
 	var normalized_vel: Vector2 = -velocitycomp.vel.normalized()
 	speed_particles.emitting = velocitycomp.vel.length() > max_speed * .5
 	speed_particles.process_material.direction = Vector3(normalized_vel.x, normalized_vel.y, .0)
-	speed_particles.amount_ratio = velocitycomp.vel.length() / max_speed
+	speed_particles.amount_ratio = (velocitycomp.vel.length() / max_speed) * int(fatal_speed())
 
 func jump(strength: float = 1.0):
 	horizontal_vel = jump_height * strength
@@ -154,6 +155,9 @@ func die():
 	dead = true
 	velocitycomp.vel *= 1.5
 	speed_particles.emitting = false
+
+func fatal_speed() -> bool:
+	return velocitycomp.vel.length() > max_speed * .5
 
 func _on_animator_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "die":

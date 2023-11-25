@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgjsw23n3gchh"]
+[gd_scene load_steps=24 format=3 uid="uid://dgjsw23n3gchh"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_4u47g"]
 [ext_resource type="Texture2D" uid="uid://kc2o6ybwip4q" path="res://scenes/player/player.png" id="2_8x1k5"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://ccytmtwpa5soi" path="res://scenes/player/shadow.png" id="7_fhonx"]
 [ext_resource type="Texture2D" uid="uid://bog7la5wjettx" path="res://scenes/player/stick.png" id="8_k3x8c"]
 [ext_resource type="Texture2D" uid="uid://1v44d25d5bt2" path="res://scenes/player/speed_particle.png" id="9_rxl7l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_noqfs"]
+radius = 5.0
 
 [sub_resource type="Curve" id="Curve_rmpv0"]
 _data = [Vector2(0, 0), 0.0, 3.06316, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -175,7 +178,7 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_3wp46")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3btb"]
-radius = 6.0
+radius = 7.0
 
 [sub_resource type="Curve" id="Curve_aia68"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.14, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -198,6 +201,9 @@ scale_curve = SubResource("CurveTexture_32xia")
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_4u47g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_noqfs")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
