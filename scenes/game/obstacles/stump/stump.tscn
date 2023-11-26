@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://crntnpg1paar8"]
+[gd_scene load_steps=6 format=3 uid="uid://crntnpg1paar8"]
 
 [ext_resource type="Texture2D" uid="uid://gvhxcutux3yf" path="res://scenes/game/obstacles/stump/stump.png" id="1_cykxa"]
+[ext_resource type="Texture2D" uid="uid://ccytmtwpa5soi" path="res://scenes/player/shadow.png" id="1_htmbk"]
 [ext_resource type="PackedScene" uid="uid://tbvv8m7abqc7" path="res://scenes/components/height_collider_disabler/height_collider_disabler.tscn" id="1_w72st"]
 [ext_resource type="PackedScene" uid="uid://yfxyksq8lfwa" path="res://scenes/components/hitbox/hitbox.tscn" id="2_ffkaf"]
 
@@ -8,6 +9,11 @@
 radius = 7.0
 
 [node name="Stump" type="StaticBody2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 3)
+texture = ExtResource("1_htmbk")
 
 [node name="HeightColliderDisabler" parent="." node_paths=PackedStringArray("colliders") instance=ExtResource("1_w72st")]
 height = 6.0

@@ -5,5 +5,5 @@ uniform sampler2D noise: repeat_enable;
 
 void fragment() {
 	float noise_value = texture(noise, UV + offset).r;
-	COLOR = texture(TEXTURE, vec2(UV.y * (noise_value*.5 + .5), .0));
+	COLOR = texture(TEXTURE, vec2(UV.y * (noise_value*.5 + .5) * .75, .0));
 }

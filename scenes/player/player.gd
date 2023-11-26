@@ -4,7 +4,7 @@ var speed := 20.0
 var max_speed := 200.0
 var steering := .0
 var horizontal_vel := .0
-var jump_height := 200.0
+var jump_height := 250.0
 
 var direction := -.5*PI
 
