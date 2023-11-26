@@ -1,7 +1,7 @@
 extends Node
 
 @export var amplitude := 128.0
-@export var frequency := .25
+@export var frequency := .05
 @export var track_width := 180.0
 
 @onready var scene := get_parent()
@@ -13,8 +13,10 @@ func _ready() -> void:
 	generate.call_deferred()
 
 func generate() -> void:
-	var points := 10.0
-	var length := 1000.0
+	var length := 2500.0
+	var points := length / 200.0
+	
+	randomize()
 	
 	for i in points:
 		var pos := length * (i / points)
@@ -34,10 +36,13 @@ func generate() -> void:
 			track_width, 0
 		))
 		chunk.y_sort_enabled = true
+		chunk.set_script(chunk_script)
 		
 		add_sibling(chunk)
 
+@onready var chunk_script := preload("res://scenes/game/chunk.gd")
 @onready var tree_scene := preload("res://scenes/game/tree.tscn")
+
 func generate_tree_patch(node: Node, width: float, height: float, offset: Vector2 = Vector2.ZERO) -> void:
 	for i in (width * height) / 256:
 		var tree = tree_scene.instantiate()
