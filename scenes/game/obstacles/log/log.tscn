@@ -19,7 +19,7 @@ height = 5.0
 colliders = [NodePath("../CollisionShape2D")]
 
 [node name="Hitbox" parent="." instance=ExtResource("1_ju7es")]
-height = 10.0
+height = 6.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_gfn2k")

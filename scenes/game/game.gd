@@ -3,6 +3,7 @@ extends Node2D
 @onready var camera := $Camera2D
 @onready var player := $Player
 @onready var snow_gradient := $Camera2D/SnowGradient
+@onready var generator := $Generator
 
 func _ready() -> void:
 	VfxManager.set_target(self)

@@ -104,3 +104,6 @@ position = Vector2(391, 244)
 
 [node name="Generator" type="Node" parent="."]
 script = ExtResource("5_kj4e4")
+amplitude = null
+frequency = null
+track_width = null
