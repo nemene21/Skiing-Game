@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgjsw23n3gchh"]
+[gd_scene load_steps=25 format=3 uid="uid://dgjsw23n3gchh"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_4u47g"]
 [ext_resource type="Texture2D" uid="uid://kc2o6ybwip4q" path="res://scenes/player/player.png" id="2_8x1k5"]
@@ -18,8 +18,11 @@ _data = [Vector2(0, 0), 0.0, 3.06316, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_w1ny8"]
-_data = [Vector2(0, 0.0105263), -6.73895, 3.82895, 0, 0, Vector2(1, 1), 0.510527, 0.510527, 0, 0]
+_data = [Vector2(0, 0.0105263), -6.73895, 1.921, 0, 0, Vector2(1, 1), 0.510527, 0.510527, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1wnnj"]
+colors = PackedColorArray(0.243137, 0.152941, 0.192157, 1, 0.454902, 0.247059, 0.223529, 1)
 
 [sub_resource type="Animation" id="Animation_3otch"]
 length = 0.001
@@ -287,6 +290,7 @@ randomness = 2.0
 width = 8.0
 width_curve = SubResource("Curve_w1ny8")
 default_color = Color(0.454902, 0.247059, 0.223529, 1)
+gradient = SubResource("Gradient_1wnnj")
 pivot = NodePath("../Sprite/hair_pivot")
 border = 12.0
 randomness = 1.0

@@ -80,10 +80,9 @@ pivot_offset = Vector2(20, 20)
 script = ExtResource("2_pmffq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
-autoplay = "shock"
-speed_scale = 0.7
 libraries = {
 "": SubResource("AnimationLibrary_4scmt")
 }
+autoplay = "shock"
 
 [connection signal="animation_finished" from="Shockwave/AnimationPlayer" to="Shockwave" method="_on_animation_player_animation_finished"]
