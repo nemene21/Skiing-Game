@@ -1,5 +1,8 @@
 extends Node
 
+@export var amplitude := 128.0
+@export var frequency := 1.0
+
 @onready var scene := get_parent()
 @onready var log_scene := preload("res://scenes/game/obstacles/log/log.tscn")
 
@@ -13,7 +16,7 @@ func generate() -> void:
 	var noise := FastNoiseLite.new()
 	for i in points:
 		var pos := length * (i / points)
-		var noise_value := noise.get_noise_1d(pos)
+		var noise_value := noise.get_noise_1d(pos * frequency) * amplitude
 		
 		var log := log_scene.instantiate()
 		add_sibling(log)
