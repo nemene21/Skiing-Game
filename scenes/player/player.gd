@@ -118,9 +118,9 @@ func _process(delta: float) -> void:
 	stick2.scale.x = Utils.dlerp(stick2.scale.x, lerp(1.0, 0.65, float(speeding)), 10.0)
 	
 	var normalized_vel: Vector2 = -velocitycomp.vel.normalized()
-	speed_particles.emitting = velocitycomp.vel.length() > max_speed * .5
+	speed_particles.emitting = fatal_speed()
 	speed_particles.process_material.direction = Vector3(normalized_vel.x, normalized_vel.y, .0)
-	speed_particles.amount_ratio = (velocitycomp.vel.length() / max_speed) * int(fatal_speed())
+	speed_particles.amount_ratio = (velocitycomp.vel.length() / max_speed)
 
 func jump(strength: float = 1.0):
 	horizontal_vel = jump_height * strength
@@ -139,11 +139,15 @@ func land():
 	shockwave.modulate = Color("#5a6988")
 	shockwave.z_index = -1
 	
+	var scale_rn = sprite.scale
+	sprite.scale = Vector2(1.33, 0.66)
+	get_tree().create_tween().tween_property(sprite, "scale", scale_rn, .2)
+	
 	trail1.turn_on()
 	trail2.turn_on()
 
 func try_dying() -> bool:
-	if velocitycomp.vel.length() > max_speed * .5:
+	if fatal_speed():
 		die()
 		return true
 	return false
@@ -157,7 +161,7 @@ func die():
 	speed_particles.emitting = false
 
 func fatal_speed() -> bool:
-	return velocitycomp.vel.length() > max_speed * .5
+	return velocitycomp.vel.length() > max_speed * .7
 
 func _on_animator_animation_finished(anim_name: StringName) -> void:
 	if anim_name != "die":

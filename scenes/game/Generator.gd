@@ -1,7 +1,7 @@
 extends Node
 
 @export var amplitude := 128.0
-@export var frequency := 1.0
+@export var frequency := .25
 @export var track_width := 180.0
 
 @onready var scene := get_parent()
@@ -18,7 +18,7 @@ func generate() -> void:
 	
 	for i in points:
 		var pos := length * (i / points)
-		var noise_value := noise.get_noise_1d(pos * frequency) * amplitude
+		var noise_value := get_noise(pos)
 		
 		var log := log_scene.instantiate()
 		add_sibling(log)
@@ -30,7 +30,7 @@ func generate() -> void:
 		generate_tree_patch(chunk, 96, length / points, Vector2(
 			-track_width, 0
 		))
-		generate_tree_patch(chunk, 128, length / points, Vector2(
+		generate_tree_patch(chunk, 160, length / points, Vector2(
 			track_width, 0
 		))
 		chunk.y_sort_enabled = true
@@ -47,4 +47,4 @@ func generate_tree_patch(node: Node, width: float, height: float, offset: Vector
 		tree.position += offset
 
 func get_noise(dist: float) -> float:
-	pass
+	return noise.get_noise_1d(dist * frequency) * amplitude
