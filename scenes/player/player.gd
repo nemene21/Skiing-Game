@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 	horizontal_vel = Utils.dlerp(horizontal_vel, -jump_height, 6.0)
 	
 	# Steering
-	direction += steering * delta * 5.0
+	direction += steering * delta * 6.0
 	direction = Utils.dlerp(direction, clamp(direction, -PI*.75, -PI*.25), 12.0)
 	
 	if grounded:
@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 		velocitycomp.vel = Utils.dlerp(
 			velocitycomp.vel,
 			velocitycomp.vel.length() * Vector2.RIGHT.rotated(direction),
-			4.0
+			5.0
 		)
 	
 	# Jump

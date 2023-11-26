@@ -181,7 +181,7 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_3wp46")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3btb"]
-radius = 7.0
+radius = 5.0
 
 [sub_resource type="Curve" id="Curve_aia68"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.14, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
