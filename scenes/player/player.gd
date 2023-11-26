@@ -219,5 +219,5 @@ func _on_animator_animation_finished(anim_name: StringName) -> void:
 	VfxManager.play_vfx("puddle", global_position, 0, Vector2(1, 1), -1)
 	
 	get_parent().death_animator.play("death")
-
+	get_parent().post_processing_death_anim()
 #endregion

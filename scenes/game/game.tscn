@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bh5kustglvv1c"]
+[gd_scene load_steps=17 format=3 uid="uid://bh5kustglvv1c"]
 
 [ext_resource type="PackedScene" uid="uid://dgjsw23n3gchh" path="res://scenes/player/player.tscn" id="1_7b0xc"]
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_45wlt"]
@@ -11,8 +11,8 @@ frequency = 0.013
 fractal_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4qfua"]
-width = 640
-height = 360
+width = 1280
+height = 720
 seamless = true
 noise = SubResource("FastNoiseLite_csrqd")
 
@@ -68,9 +68,62 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_lg1iw"]
 resource_name = "death"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-4.43828, -4.43828),
+"update": 0,
+"values": [Vector2(160, 90), Vector2(160, 120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-4.43828, -4.43828),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.75, 0.75)]
+}
+
+[sub_resource type="Animation" id="Animation_wgog3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4hqh"]
 _data = {
+"RESET": SubResource("Animation_wgog3"),
 "death": SubResource("Animation_lg1iw")
 }
 
@@ -90,8 +143,10 @@ material = SubResource("ShaderMaterial_a2e1n")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 320.0
-offset_bottom = 180.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

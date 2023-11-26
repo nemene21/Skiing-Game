@@ -2,7 +2,7 @@ extends Node
 
 @export var amplitude := 128.0
 @export var frequency := .05
-@export var track_width := 180.0
+@export var track_width := 200.0
 
 @onready var scene := get_parent()
 @onready var noise := FastNoiseLite.new()
@@ -34,10 +34,10 @@ func generate() -> void:
 		
 		var chunk = Node2D.new()
 		chunk.global_position = Vector2(160, -pos)
-		generate_tree_patch(chunk, 96, length / points, Vector2(
+		generate_tree_patch(chunk, 200, length / points, Vector2(
 			-track_width, 0
 		))
-		generate_tree_patch(chunk, 160, length / points, Vector2(
+		generate_tree_patch(chunk, 200, length / points, Vector2(
 			track_width, 0
 		))
 		chunk.y_sort_enabled = true
@@ -48,7 +48,7 @@ func generate() -> void:
 @onready var tree_scene := preload("res://scenes/game/obstacles/tree/tree.tscn")
 
 func generate_tree_patch(node: Node, width: float, height: float, offset: Vector2 = Vector2.ZERO) -> void:
-	for i in (width * height) / 512:
+	for i in (width * height) / 700:
 		var tree = tree_scene.instantiate()
 		node.add_child(tree)
 		
