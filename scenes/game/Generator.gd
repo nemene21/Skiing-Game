@@ -44,7 +44,7 @@ func generate() -> void:
 @onready var tree_scene := preload("res://scenes/game/tree.tscn")
 
 func generate_tree_patch(node: Node, width: float, height: float, offset: Vector2 = Vector2.ZERO) -> void:
-	for i in (width * height) / 256:
+	for i in (width * height) / 512:
 		var tree = tree_scene.instantiate()
 		node.add_child(tree)
 		
