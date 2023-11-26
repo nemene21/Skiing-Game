@@ -4,6 +4,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dm6yp"]
 shader = ExtResource("1_gvbki")
+shader_parameter/saturation = 1.2
+shader_parameter/brightness = 1.0
+shader_parameter/bloom_strength = 0.2
+shader_parameter/bloom_exponent = 2.0
+shader_parameter/bloom_blur = 3.0
 
 [node name="PostProcessing" type="CanvasLayer"]
 

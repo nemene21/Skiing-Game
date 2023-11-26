@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm80djy40eoms"]
+[gd_scene load_steps=8 format=3 uid="uid://bm80djy40eoms"]
 
 [ext_resource type="PackedScene" uid="uid://tbvv8m7abqc7" path="res://scenes/components/height_collider_disabler/height_collider_disabler.tscn" id="1_ink3l"]
+[ext_resource type="Script" path="res://scenes/game/obstacles/log/log.gd" id="1_j8xx5"]
 [ext_resource type="PackedScene" uid="uid://yfxyksq8lfwa" path="res://scenes/components/hitbox/hitbox.tscn" id="1_ju7es"]
 [ext_resource type="Texture2D" uid="uid://byn6c3hvlj7qr" path="res://scenes/game/obstacles/log/log.png" id="1_whlw8"]
 [ext_resource type="Texture2D" uid="uid://ch4mvg72ygrxw" path="res://scenes/game/obstacles/log/shadow.png" id="2_lx2hd"]
@@ -13,6 +14,7 @@ size = Vector2(64, 8)
 
 [node name="Log" type="StaticBody2D"]
 z_index = -1
+script = ExtResource("1_j8xx5")
 
 [node name="HeightColliderDisabler" parent="." node_paths=PackedStringArray("colliders") instance=ExtResource("1_ink3l")]
 height = 5.0
