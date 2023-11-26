@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://crntnpg1paar8"]
+
+[ext_resource type="Texture2D" uid="uid://gvhxcutux3yf" path="res://scenes/game/obstacles/stump/stump.png" id="1_cykxa"]
+[ext_resource type="PackedScene" uid="uid://tbvv8m7abqc7" path="res://scenes/components/height_collider_disabler/height_collider_disabler.tscn" id="1_w72st"]
+[ext_resource type="PackedScene" uid="uid://yfxyksq8lfwa" path="res://scenes/components/hitbox/hitbox.tscn" id="2_ffkaf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwiqd"]
+radius = 7.0
+
+[node name="Stump" type="StaticBody2D"]
+
+[node name="HeightColliderDisabler" parent="." node_paths=PackedStringArray("colliders") instance=ExtResource("1_w72st")]
+height = 6.0
+colliders = [NodePath("../CollisionShape2D")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_cykxa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cwiqd")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_ffkaf")]
+height = 8.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_cwiqd")

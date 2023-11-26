@@ -12,6 +12,8 @@ func _process(delta: float) -> void:
 		return
 	
 	global_position = Vector2.ZERO
+	global_scale = Vector2.ONE
+	global_rotation = 0
 	
 	add_point(pivot.global_position + Vector2(randf_range(-randomness, randomness), randf_range(-randomness, randomness)))
 	

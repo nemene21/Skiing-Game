@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://dusneuq032v31"]
+
+[ext_resource type="Texture2D" uid="uid://c542eglllgkqj" path="res://scenes/game/obstacles/tree/tree_stump.png" id="1_w73xf"]
+[ext_resource type="Script" path="res://scenes/game/tree.gd" id="2_82txi"]
+[ext_resource type="Shader" path="res://scenes/game/sway.gdshader" id="3_iesov"]
+[ext_resource type="Texture2D" uid="uid://b5dyrh4ercc2l" path="res://scenes/game/obstacles/tree/tree_top.png" id="4_sqvl4"]
+[ext_resource type="Texture2D" uid="uid://ccytmtwpa5soi" path="res://scenes/player/shadow.png" id="5_v7r6g"]
+[ext_resource type="PackedScene" uid="uid://yfxyksq8lfwa" path="res://scenes/components/hitbox/hitbox.tscn" id="6_4q0va"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oi6pd"]
+shader = ExtResource("3_iesov")
+shader_parameter/sway_force = Vector2(2, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5cxx"]
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="Tree" type="Sprite2D" parent="."]
+texture = ExtResource("1_w73xf")
+offset = Vector2(0, -5)
+script = ExtResource("2_82txi")
+
+[node name="Greenery" type="Sprite2D" parent="Tree"]
+material = SubResource("ShaderMaterial_oi6pd")
+position = Vector2(1, -16)
+texture = ExtResource("4_sqvl4")
+offset = Vector2(0, -36)
+
+[node name="Shadow" type="Sprite2D" parent="Tree"]
+z_index = -1
+position = Vector2(1, 3)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("5_v7r6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q5cxx")
+
+[node name="Hitbox" parent="." instance=ExtResource("6_4q0va")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_q5cxx")
