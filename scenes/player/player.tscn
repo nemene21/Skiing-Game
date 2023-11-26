@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dx6w72k81kj7h" path="res://scenes/player/ski.png" id="2_p5np5"]
 [ext_resource type="PackedScene" uid="uid://bbh1bk2sccwl2" path="res://scenes/components/velocity_component/velocity_component.tscn" id="4_dnkbb"]
 [ext_resource type="PackedScene" uid="uid://cfjhbwxq1omhl" path="res://scenes/components/trail/trail.tscn" id="4_v8gx4"]
-[ext_resource type="Texture2D" uid="uid://dervsvwyi8eiw" path="res://scenes/player/snow_particle.png" id="6_0l8ix"]
 [ext_resource type="Texture2D" uid="uid://ccytmtwpa5soi" path="res://scenes/player/shadow.png" id="7_fhonx"]
+[ext_resource type="Texture2D" uid="uid://dervsvwyi8eiw" path="res://scenes/vfx/snow_particle.png" id="8_47274"]
 [ext_resource type="Texture2D" uid="uid://bog7la5wjettx" path="res://scenes/player/stick.png" id="8_k3x8c"]
-[ext_resource type="Texture2D" uid="uid://1v44d25d5bt2" path="res://scenes/player/speed_particle.png" id="9_rxl7l"]
+[ext_resource type="Texture2D" uid="uid://1v44d25d5bt2" path="res://scenes/vfx/speed_particle.png" id="9_hvcf1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_noqfs"]
 radius = 5.0
@@ -307,14 +307,14 @@ z_index = -2
 position = Vector2(-3, 4)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_cjg7f")
-texture = ExtResource("6_0l8ix")
+texture = ExtResource("8_47274")
 
 [node name="BreakParticles2" type="GPUParticles2D" parent="."]
 z_index = -2
 position = Vector2(3, 4)
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_cjg7f")
-texture = ExtResource("6_0l8ix")
+texture = ExtResource("8_47274")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 2
@@ -325,6 +325,6 @@ shape = SubResource("CircleShape2D_b3btb")
 
 [node name="SpeedParticles" type="GPUParticles2D" parent="."]
 process_material = SubResource("ParticleProcessMaterial_r0rb2")
-texture = ExtResource("9_rxl7l")
+texture = ExtResource("9_hvcf1")
 
 [connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]

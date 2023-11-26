@@ -57,7 +57,7 @@ material = SubResource("ShaderMaterial_se4x6")
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(20, 20)
-color = Color(0.635294, 0.14902, 0.2, 1)
+color = Color(0.619608, 0.156863, 0.207843, 1)
 script = ExtResource("1_kggxf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Puddle"]

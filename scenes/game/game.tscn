@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bh5kustglvv1c"]
+[gd_scene load_steps=16 format=3 uid="uid://bh5kustglvv1c"]
 
 [ext_resource type="PackedScene" uid="uid://dgjsw23n3gchh" path="res://scenes/player/player.tscn" id="1_7b0xc"]
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_45wlt"]
@@ -66,6 +66,14 @@ _data = {
 "day": SubResource("Animation_63cui")
 }
 
+[sub_resource type="Animation" id="Animation_lg1iw"]
+resource_name = "death"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4hqh"]
+_data = {
+"death": SubResource("Animation_lg1iw")
+}
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_45wlt")
@@ -105,3 +113,8 @@ position = Vector2(391, 244)
 [node name="Generator" type="Node" parent="."]
 script = ExtResource("5_kj4e4")
 amplitude = 96.0
+
+[node name="DeathAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h4hqh")
+}

@@ -191,6 +191,7 @@ func try_dying() -> bool:
 func die():
 	jump(2.0); animator.play("die")
 	VfxManager.play_vfx("puddle", global_position, 0, Vector2(.5, .5), -1)
+	VfxManager.play_vfx("blood_impact", global_position)
 	
 	trail1.turn_off(); trail2.turn_off()
 	
@@ -216,5 +217,7 @@ func _on_animator_animation_finished(anim_name: StringName) -> void:
 	VfxManager.play_vfx("puddle", global_position, 0, Vector2(.65, .65), -1)
 	await(get_tree().create_timer(0.2).timeout)
 	VfxManager.play_vfx("puddle", global_position, 0, Vector2(1, 1), -1)
+	
+	get_parent().death_animator.play("death")
 
 #endregion

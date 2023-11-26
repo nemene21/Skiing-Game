@@ -4,6 +4,7 @@ extends Node2D
 @onready var player := $Player
 @onready var snow_gradient := $Camera2D/SnowGradient
 @onready var generator := $Generator
+@onready var death_animator := $DeathAnimation
 
 func _ready() -> void:
 	VfxManager.set_target(self)

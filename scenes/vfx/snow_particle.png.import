@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1v44d25d5bt2"
-path="res://.godot/imported/speed_particle.png-14922af2499aebd6046666e424114ed9.ctex"
+uid="uid://dervsvwyi8eiw"
+path="res://.godot/imported/snow_particle.png-120a1078f1aa162a6b21ec2f599ab101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/speed_particle.png"
-dest_files=["res://.godot/imported/speed_particle.png-14922af2499aebd6046666e424114ed9.ctex"]
+source_file="res://scenes/vfx/snow_particle.png"
+dest_files=["res://.godot/imported/snow_particle.png-120a1078f1aa162a6b21ec2f599ab101.ctex"]
 
 [params]
 
